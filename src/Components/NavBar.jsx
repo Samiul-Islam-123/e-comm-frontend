@@ -4,10 +4,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Switch } from '@mui/material';
 import appName from '../AppName';
 import SellerDrawyer from '../Apps/E_Commerce/Seller/SellerDrawyer';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar(props) {
 
-
+    const navigate = useNavigate();
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -19,7 +20,9 @@ function NavBar(props) {
                             </IconButton>
                         </SellerDrawyer>
 
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Typography onClick={() => {
+                            navigate("/")
+                        }} style={{ "cursor": "pointer" }} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             {appName}
                         </Typography>
 

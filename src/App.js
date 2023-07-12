@@ -12,7 +12,8 @@ import { Container } from "@mui/material";
 import Home from "./Pages/Home";
 import E_Commerce from "./Apps/E_Commerce/E_Commerce";
 import SellerProfile from "./Apps/E_Commerce/Seller/SellerProfile";
-
+import SellerProducts from "./Apps/E_Commerce/Seller/SellerProducts";
+import ProductDetails from "./Apps/E_Commerce/Seller/ProductDetails";
 
 function App() {
 
@@ -49,6 +50,8 @@ function App() {
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/app/ecommerce/" element={<E_Commerce />}></Route>
             <Route exact path="/app/ecommerce/seller/profile" element={<SellerProfile />}></Route>
+            <Route exact path="/app/ecommerce/seller/products" element={<SellerProducts />}></Route>
+            <Route exact path="/app/ecommerce/seller/products/:id" element={<ProductDetails />}></Route>
 
           </Routes>
         </Container>

@@ -64,7 +64,11 @@ function SellerProfile() {
 
             try {
                 const res = await axios.post(`${apiUrl}/app/seller/create-seller`, formData);
-                console.log(res)
+                if (res.data.message == "OK")
+                    window.location.reload();
+
+                else
+                    alert(res.data.message)
             }
 
             catch (error) {
@@ -83,11 +87,13 @@ function SellerProfile() {
         if (res.data.message == "No Seller Data found") {
             console.log(res.data.message)
             setProfileIsEmpty(true);
+
         }
 
         else if (res.data.message == "OK") {
             setProfileData(res.data.SellerData)
             setProfileIsEmpty(false)
+
         }
         setLoading(false)
     }
@@ -110,6 +116,8 @@ function SellerProfile() {
             }
             {
                 profileIsEmpty ? (<>
+
+                    <Typography style={{ "textAlign": "center", "marginTop": "10px" }} variant='h4'>Create Seller Profile</Typography>
                     <div className="profile-header" style={{ "display": "flex", "alignItems": "center", "justifyContent": "center", "marginTop": "10px" }}>
                         <div className="profile-image-container">
 
