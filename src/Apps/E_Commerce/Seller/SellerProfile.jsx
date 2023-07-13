@@ -19,6 +19,7 @@ function SellerProfile() {
     const [sellerEmail, setSellerEmail] = useState('');
     const [sellerDescription, setSellerDescription] = useState('');
     const [dataURL, setDataURL] = useState('');
+    const [isSeller, setIsSeller] = useState(true);
 
     const [profileData, setProfileData] = useState(null);
 
@@ -109,6 +110,14 @@ function SellerProfile() {
 
     }, [])
 
+    useEffect(() => {
+        if (isSeller)
+            navigate('/app/ecommerce/seller/profile')
+
+        else
+            navigate('/app/ecommerce/buyer/home')
+    }, [isSeller])
+
     return (
         <>
             {
@@ -168,7 +177,7 @@ function SellerProfile() {
                                 <div className="profile-image-container">
 
 
-                                    <img src={profileData.SellerProfilePicURL} alt='Profile pic' />
+                                    <img width={"80vh"} src={profileData.SellerProfilePicURL} alt='Profile pic' />
 
                                 </div>
                                 <div className="user-details" style={{ "marginLeft": "20px" }}>
@@ -184,6 +193,9 @@ function SellerProfile() {
                                 <Typography variant='h6'>{profileData.SellerDescription}</Typography>
 
                             </div>
+
+
+
                         </>) : null
                     }
 

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useEffect, useState } from "react";
@@ -15,8 +15,11 @@ import SellerProfile from "./Apps/E_Commerce/Seller/SellerProfile";
 import SellerProducts from "./Apps/E_Commerce/Seller/SellerProducts";
 import ProductDetails from "./Apps/E_Commerce/Seller/ProductDetails";
 
-function App() {
+import BuyerHome from "./Apps/E_Commerce/Buyer/BuyerHome";
+import BuyerProductDetails from "./Apps/E_Commerce/Buyer/BuyerProductDetails";
 
+function App() {
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
 
   const darkTheme = createTheme({
@@ -52,6 +55,9 @@ function App() {
             <Route exact path="/app/ecommerce/seller/profile" element={<SellerProfile />}></Route>
             <Route exact path="/app/ecommerce/seller/products" element={<SellerProducts />}></Route>
             <Route exact path="/app/ecommerce/seller/products/:id" element={<ProductDetails />}></Route>
+
+            <Route exact path="/app/ecommerce/buyer/home" element={<BuyerHome />}></Route>
+            <Route exact path="/app/ecommerce/buyer/product-details/:productID" element={<BuyerProductDetails />}></Route>
 
           </Routes>
         </Container>

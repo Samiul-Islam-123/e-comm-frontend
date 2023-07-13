@@ -10,9 +10,12 @@ function E_Commerce() {
 
     useEffect(() => {
         if (ProtectedRoute()) {
-            //set User role as seller in local storage
-            // navigate to /seller/profile
-            navigate('/app/ecommerce/seller/profile')
+            const isSeller = localStorage.getItem('isSeller');
+            if (isSeller)
+                navigate('/app/ecommerce/seller/profile');
+
+            else
+                navigate('/app/ecommerce/buyer/home')
         }
 
         else {

@@ -7,16 +7,16 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LinearProgress from '@mui/material/LinearProgress';
 
 
-function ProductDetails() {
+function BuyerProductDetails() {
 
-    const { id } = useParams();
+    const { productID } = useParams();
 
     const [loading, setLoading] = useState(false);
     const [productDetails, setProductDetails] = useState(null);
 
     const fetchProductDetails = async () => {
         setLoading(true);
-        const res = await axios.get(`${apiUrl}/app/seller/fetch-product-Details/${id}`);
+        const res = await axios.get(`${apiUrl}/app/seller/fetch-product-Details/${productID}`);
         if (res.data.message == "OK")
             setProductDetails(res.data.productDetails);
 
@@ -65,7 +65,14 @@ function ProductDetails() {
                             "marginTop": "20px"
                         }}
                         className="Cart">
+                        <Button
 
+                            variant="contained"
+                            color="primary"
+                            startIcon={<ShoppingCartIcon />}
+                        >
+                            Add to Cart
+                        </Button>
                     </div>
                 </>) : (<>No product Details Found</>)
             }
@@ -73,4 +80,4 @@ function ProductDetails() {
     )
 }
 
-export default ProductDetails
+export default BuyerProductDetails
