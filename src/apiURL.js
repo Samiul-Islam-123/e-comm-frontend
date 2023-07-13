@@ -1,3 +1,3 @@
-const apiUrl = `http://localhost:5500`;
+const apiUrl = `https://e-comm-backend-ljzn.onrender.com`;
 
 export default apiUrl;
