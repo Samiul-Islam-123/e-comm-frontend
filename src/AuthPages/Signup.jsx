@@ -18,7 +18,8 @@ import axios from "axios";
 import apiUrl from '../apiURL';
 import { useNavigate } from "react-router-dom";
 import LinearProgress from '@mui/material/LinearProgress';
-
+import ProtectedRoute from '../ProtectedRoute';
+import { useEffect } from 'react';
 
 function Signup() {
 
@@ -30,6 +31,16 @@ function Signup() {
     const [email, setEmail] = useState(null);
     const [avatarSrc, setAvatarSrc] = useState('');
 
+    useEffect(() => {
+        if (ProtectedRoute()) {
+            // fetchSeller();
+        }
+
+        else {
+            navigate('/auth/signup')
+        }
+
+    }, [])
 
     const changeUsername = (e) => {
         setUsername(e.target.value);
