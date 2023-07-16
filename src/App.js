@@ -17,6 +17,8 @@ import ProductDetails from "./Apps/E_Commerce/Seller/ProductDetails";
 
 import BuyerHome from "./Apps/E_Commerce/Buyer/BuyerHome";
 import BuyerProductDetails from "./Apps/E_Commerce/Buyer/BuyerProductDetails";
+import BuyerProfile from "./Apps/E_Commerce/Buyer/BuyerProfile";
+import BuyerCart from "./Apps/E_Commerce/Buyer/BuyerCart";
 
 function App() {
   const navigate = useNavigate();
@@ -58,6 +60,8 @@ function App() {
 
             <Route exact path="/app/ecommerce/buyer/home" element={<BuyerHome />}></Route>
             <Route exact path="/app/ecommerce/buyer/product-details/:productID" element={<BuyerProductDetails />}></Route>
+            <Route exact path="/app/ecommerce/buyer/profile" element={<BuyerProfile />}></Route>
+            <Route exact path="/app/ecommerce/buyer/cart" element={<BuyerCart />}></Route>
 
           </Routes>
         </Container>

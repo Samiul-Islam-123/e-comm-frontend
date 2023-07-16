@@ -121,9 +121,11 @@ function Login() {
                     <Grid container>
 
                         <Grid item>
-                            <Link href="/auth/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
+                            <Button onClick={() => {
+                                navigate('/auth/signup')
+                            }} variant="body2">
+                                {"Do not have an account? Signup"}
+                            </Button>
                         </Grid>
                     </Grid>
                 </Box>

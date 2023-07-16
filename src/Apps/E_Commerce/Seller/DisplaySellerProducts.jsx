@@ -29,6 +29,7 @@ function DisplaySellerProducts() {
         }
 
         else if (res.data.message == "OK") {
+            console.log(res.data)
             setStatus("OK")
             setProductData(res.data.products);
         }
@@ -36,14 +37,7 @@ function DisplaySellerProducts() {
     }
 
     useEffect(() => {
-        if (ProtectedRoute()) {
-            fetchSellerProducts();
-        }
-
-        else {
-            navigate('/auth/login')
-        }
-
+        fetchSellerProducts();
     }, [])
 
     return (

@@ -31,17 +31,6 @@ function Signup() {
     const [email, setEmail] = useState(null);
     const [avatarSrc, setAvatarSrc] = useState('');
 
-    useEffect(() => {
-        if (ProtectedRoute()) {
-            // fetchSeller();
-        }
-
-        else {
-            navigate('/auth/signup')
-        }
-
-    }, [])
-
     const changeUsername = (e) => {
         setUsername(e.target.value);
     }
@@ -149,9 +138,11 @@ function Signup() {
                     <Grid container>
 
                         <Grid item>
-                            <Link href="/auth/login" variant="body2">
+                            <Button onClick={() => {
+                                navigate('/auth/login')
+                            }} variant="body2">
                                 {"ALready have an account? Log in"}
-                            </Link>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Box>

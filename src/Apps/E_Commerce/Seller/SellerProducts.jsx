@@ -1,5 +1,5 @@
 import { AppBar, Divider, IconButton, Toolbar, Typography } from '@mui/material'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import AddSellerProduct from './AddSellerProduct';
@@ -10,6 +10,13 @@ function SellerProducts() {
     const [addProduct, setAddProduct] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleAddProduct = (isSuccess) => {
+        if (isSuccess) {
+            setAddProduct(false);
+        }
+    };
+
     return (
         <>
 
@@ -26,7 +33,7 @@ function SellerProducts() {
 
             <Divider />
             {
-                addProduct ? (<AddSellerProduct />) : (<DisplaySellerProducts />)
+                addProduct ? (<AddSellerProduct handleAddProduct={handleAddProduct} />) : (<DisplaySellerProducts />)
             }
         </>
 

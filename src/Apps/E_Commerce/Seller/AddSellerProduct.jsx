@@ -7,7 +7,7 @@ import apiUrl from '../../../apiURL';
 import Cookies from 'js-cookie';
 import ProtectedRoute from '../../../ProtectedRoute';
 import LinearProgress from '@mui/material/LinearProgress';
-function AddSellerProduct() {
+function AddSellerProduct(props) {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -70,7 +70,8 @@ function AddSellerProduct() {
             try {
                 const res = await axios.post(`${apiUrl}/app/seller/add-product`, formData);
                 if (res.data.message == "OK")
-                    window.location.reload();
+                    props.handleAddProduct(true); // Call the callback function with 'true'
+
 
                 else
                     alert(res.data.message)
@@ -119,7 +120,7 @@ function AddSellerProduct() {
                         <TextField onChange={handleUserName} id="standard-basic" label="Product Name" variant="standard" />
                     </div>
                     <div className="Price">
-                        <TextField onChange={handlePrice} id="standard-basic" label="Product Price" variant="standard" />
+                        <TextField onChange={handlePrice} id="standard-basic" label="Product Price (in $)" variant="standard" />
                     </div>
                     <div className="Price">
                         <TextField type='number' onChange={handleQty} id="standard-basic" label="Product Qty" variant="standard" />

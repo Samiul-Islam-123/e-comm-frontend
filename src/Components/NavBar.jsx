@@ -13,11 +13,7 @@ function NavBar(props) {
     const [seller, setSeller] = useState(false);
 
     useEffect(() => {
-        if (seller)
-            navigate('/app/ecommerce/seller/profile')
-
-        else
-            navigate('/app/ecommerce/buyer/home')
+        seller ? (navigate('/app/ecommerce/seller/profile')) : (navigate('/app/ecommerce/buyer/home'))
     }, [seller])
 
     return (
@@ -49,7 +45,6 @@ function NavBar(props) {
 
                         <Button variant='outlined' color='inherit' onClick={() => {
                             setSeller(!seller);
-                            localStorage.setItem('isSeller', seller)
                         }}>
                             {
                                 seller ? (<>Switch to Buyer</>) : (<>Switch to Seller</>)

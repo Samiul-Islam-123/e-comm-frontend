@@ -1,13 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import apiUrl from '../../../apiURL'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Divider, Grid, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LinearProgress from '@mui/material/LinearProgress';
-
+import Cookies from "js-cookie"
 
 function BuyerProductDetails() {
+    const navigate = useNavigate();
 
     const { productID } = useParams();
 
@@ -25,6 +26,58 @@ function BuyerProductDetails() {
         }
         setLoading(false);
     }
+    const token = Cookies.get('access_token');
+
+    const pushItemToCart = async () => {
+        const pushRes = await axios.post(`${apiUrl}/app/buyer/add-to-cart`, {
+            token: token,
+            productID: productID
+        })
+
+        if (pushRes.data.message == "OK")
+            alert("Item Added to cart sucessfully")
+
+        else {
+            alert(pushRes.data.message)
+            console.log(pushRes.data)
+        }
+    }
+
+    const addToCart = async () => {
+        //fetch Cart data
+
+        //check that cart is present or not
+        const PresenceRes = await axios.get(`${apiUrl}/app/buyer/fetch-cart-products/${token}`);
+        if (PresenceRes.data.message == "NO") {
+            //create a new cart
+            const NewCartRes = await axios.post(`${apiUrl}/app/buyer/create-cart`, {
+                token: token
+            })
+
+            if (NewCartRes.data.message == "OK") {
+                //add current item to Cart
+                pushItemToCart();
+            }
+
+        }
+
+        else if (PresenceRes.data.message == "Buyer not found") {
+            //navigate to buyer/profile
+            navigate('/app/ecommerce/buyer/profile')
+        }
+
+        else if (PresenceRes.data.message == "OK") {
+            //add item to cart
+            pushItemToCart();
+        }
+
+        else {
+            alert(PresenceRes.data.message)
+            console.log(PresenceRes.data)
+        }
+    }
+
+
 
     useEffect(() => {
         fetchProductDetails();
@@ -66,7 +119,9 @@ function BuyerProductDetails() {
                         }}
                         className="Cart">
                         <Button
-
+                            onClick={() => {
+                                addToCart();
+                            }}
                             variant="contained"
                             color="primary"
                             startIcon={<ShoppingCartIcon />}
@@ -74,7 +129,7 @@ function BuyerProductDetails() {
                             Add to Cart
                         </Button>
                     </div>
-                </>) : (<>No product Details Found</>)
+                </>) : null
             }
         </>
     )

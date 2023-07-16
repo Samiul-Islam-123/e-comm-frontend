@@ -38,7 +38,7 @@ function Home() {
                 <Grid item xs={6}>
                     <Card>
                         <CardActionArea onClick={() => {
-                            navigate('/app/ecommerce/')
+                            navigate('/app/ecommerce/buyer/home')
                         }}>
                             <CardContent style={{ "textAlign": "center" }}>
                                 E-commerce

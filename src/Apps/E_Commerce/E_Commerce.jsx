@@ -8,22 +8,6 @@ function E_Commerce() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (ProtectedRoute()) {
-            const isSeller = localStorage.getItem('isSeller');
-            if (isSeller)
-                navigate('/app/ecommerce/seller/profile');
-
-            else
-                navigate('/app/ecommerce/buyer/home')
-        }
-
-        else {
-            navigate('/auth/login')
-        }
-
-    }, [])
-
     return (<>
 
     </>

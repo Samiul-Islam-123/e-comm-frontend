@@ -67,7 +67,7 @@ function ProductDetails() {
                         className="Cart">
 
                     </div>
-                </>) : (<>No product Details Found</>)
+                </>) : null
             }
         </>
     )
