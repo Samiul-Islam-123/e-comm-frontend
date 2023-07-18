@@ -58,8 +58,10 @@ function BuyerProfile() {
         formData.append('file', selectedImage);
         try {
             const res = await axios.post(`${apiUrl}/app/buyer/create-buyer`, formData);
-            if (res.data.message == "OK")
+            if (res.data.message == "OK") {
                 setIsBuyer(true)
+                alert('Buyer Profile Created Successfully')
+            }
         }
 
         catch (error) {
