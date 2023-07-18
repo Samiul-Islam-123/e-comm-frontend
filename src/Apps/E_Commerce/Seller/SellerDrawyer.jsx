@@ -13,10 +13,19 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import { useNavigate } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useEffect } from "react";
+import axios from "axios";
+import apiUrl from "../../../apiURL";
+import Cookies from "js-cookie";
+import Badge from '@mui/material/Badge';
+import { useState } from "react";
 
 export default function SellerDrawyer({ children }) {
 
+
     const navigate = useNavigate();
+
+    const [orders, setOrders] = useState(0);
 
 
     const [state, setState] = React.useState({
@@ -33,6 +42,23 @@ export default function SellerDrawyer({ children }) {
 
         setState({ ...state, [anchor]: open });
     };
+
+    const fetchInfo = async () => {
+        const token = Cookies.get('access_token')
+        const res = await axios.get(`${apiUrl}/app/buyer/fetch-shopping-info/${token}`)
+        if (res.data.message == "OK") {
+            setOrders(res.data.Orders);
+        }
+
+        else {
+            console.log(res.data);
+            alert(res.data.message)
+        }
+    }
+
+    useEffect(() => {
+        fetchInfo();
+    })
 
     const list = (anchor) => (
         <Box
@@ -69,7 +95,9 @@ export default function SellerDrawyer({ children }) {
                         navigate('/app/ecommerce/seller/orders')
                     }}>
                         <ListItemIcon>
-                            <ChecklistIcon />
+                            <Badge badgeContent={orders} color="primary">
+                                <ChecklistIcon />
+                            </Badge>
                         </ListItemIcon>
                         <ListItemText primary={"My Orders"} />
                     </ListItemButton>

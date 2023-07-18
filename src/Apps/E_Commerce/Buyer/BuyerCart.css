@@ -1,0 +1,34 @@
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-image-container {
+        margin-bottom: 10px;
+    }
+
+    .user-details {
+        margin-left: 0;
+    }
+
+    .username {
+        flex-direction: column;
+        align-items: center;
+        /* Center buttons horizontally */
+    }
+
+    .email {
+        margin-top: 5px;
+    }
+
+    .price-container {
+        margin-left: 0;
+    }
+
+    .username>div {
+        display: flex;
+        justify-content: center;
+        /* Center buttons horizontally */
+    }
+}
