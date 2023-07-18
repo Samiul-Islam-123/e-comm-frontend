@@ -57,7 +57,7 @@ export default function SellerDrawyer({ children }) {
     }
 
     useEffect(() => {
-        fetchInfo();
+        //fetchInfo();
     })
 
     const list = (anchor) => (

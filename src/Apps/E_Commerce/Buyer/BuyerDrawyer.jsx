@@ -59,7 +59,7 @@ export default function BuyerDrawyer({ children }) {
     }
 
     useEffect(() => {
-        fetchInfo();
+        //fetchInfo();
     })
 
     const list = (anchor) => (
